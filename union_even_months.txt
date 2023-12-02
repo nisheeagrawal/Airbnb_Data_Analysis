@@ -1,0 +1,37 @@
+
+-- Show all of the rentals which occurred during only the even months of 2016.
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-02-01' AND date <= '2016-02-29' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price
+  UNION
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-04-01' AND date <= '2016-04-30' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price
+  UNION
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-06-01' AND date <= '2016-06-30' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price
+  UNION
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-08-01' AND date <= '2016-08-31' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price
+  UNION
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-10-01' AND date <= '2016-10-31' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price
+  UNION
+SELECT listing_id, listings.name, calendar.date, available, calendar.price
+FROM da_airbnb.calendar
+RIGHT JOIN da_airbnb.listings ON calendar.listing_id = listings.id
+WHERE date >= '2016-12-01' AND date <= '2016-12-31' AND available = 't'
+GROUP BY listing_id, listings.name, calendar.date, available, calendar.price

@@ -1,0 +1,4 @@
+-- Evaluating listings and reviews together with a left join
+SELECT *
+FROM da_airbnb.listings
+LEFT JOIN da_airbnb.reviews ON listings.id = reviews.listing_id

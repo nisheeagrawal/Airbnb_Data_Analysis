@@ -1,0 +1,32 @@
+-- Grouping the reviews for each listing by quality using a left join with my new quality of reviews table.
+With review_quality AS (
+SELECT comments, listing_id,
+CASE
+	WHEN COMMENTS LIKE '%perfect%' THEN 'positive'
+	WHEN COMMENTS LIKE '%bad%' THEN 'negative'
+	WHEN COMMENTS LIKE '%beautiful%' THEN 'positive'
+	WHEN COMMENTS LIKE '%dirty%' THEN 'negative'
+	WHEN COMMENTS LIKE '%great%' THEN 'positive'
+	WHEN COMMENTS LIKE '%unavailable%' THEN 'negative'
+	WHEN COMMENTS LIKE '%cool%' THEN 'positive'
+	WHEN COMMENTS LIKE '%noise%' THEN 'negative'
+	WHEN COMMENTS LIKE '%accommodating%' THEN 'positive'
+	WHEN COMMENTS LIKE '%loud%' THEN 'negative'
+	WHEN COMMENTS LIKE '%clean%' THEN 'positive'
+	WHEN COMMENTS LIKE '%dangerous%' THEN 'negative'
+	WHEN COMMENTS LIKE '%nice%' THEN 'positive'
+	WHEN COMMENTS LIKE '%uncomfortable%' THEN 'negative'
+	WHEN COMMENTS LIKE '%fantastic%' THEN 'positive'
+	WHEN COMMENTS LIKE '%ugly%' THEN 'negative'
+	WHEN COMMENTS LIKE '%quiet%' THEN 'positive'
+	WHEN COMMENTS LIKE '%poor%' THEN 'negative'
+		ELSE 'neutral'
+		END reviewquality
+FROM da_airbnb.reviews
+)
+
+SELECT listings.id, listings.name, reviewquality
+FROM da_airbnb.listings
+LEFT JOIN review_quality ON listings.id=review_quality.listing_id
+ORDER BY listings.id, reviewquality
+LIMIT 1000

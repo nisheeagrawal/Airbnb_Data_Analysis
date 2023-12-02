@@ -1,0 +1,8 @@
+--- How much does the average rating of each listing differ from the average of all listings?
+SELECT id
+, name
+, review_scores_rating
+, ((SELECT AVG(review_scores_rating) FROM da_airbnb.listings) - review_scores_rating) * -1
+FROM da_airbnb.listings
+GROUP BY id, name, review_scores_rating
+LIMIT 1000
